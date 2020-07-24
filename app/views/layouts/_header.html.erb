@@ -1,0 +1,18 @@
+<header>
+  <nav class="navbar navbar-expand-md fixed-top navbar-light bg-light">
+    <%= link_to t("site.name"), root_path, class: "navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <%= nav_link path: "home#index", html_options: { class: "nav-item" } do %>
+          <% link_to "Home", root_path, class: "nav-link" %>
+        <% end %>
+        <%= nav_link namespace: "projects", html_options: { class: "nav-item" } do %>
+          <% link_to "Projects", projects_path, class: "nav-link" %>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</header>

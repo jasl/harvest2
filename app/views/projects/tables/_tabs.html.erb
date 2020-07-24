@@ -1,0 +1,11 @@
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <%= nav_link_to({controller: "projects/tables"}, "General", project_table_path(@project, @table), class: "nav-link") %>
+  </li>
+  <li class="nav-item">
+    <%= nav_link_to({controller: 'projects/tables/relationships'}, "Relationships", project_table_relationships_path(@project, @table), class: "nav-link") %>
+  </li>
+  <li class="nav-item">
+    <%= nav_link_to({controller: 'projects/tables/records'}, "Records", project_table_records_path(@project, @table), class: "nav-link") %>
+  </li>
+</ul>

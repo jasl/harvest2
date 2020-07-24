@@ -1,0 +1,33 @@
+@import "~bootstrap/scss/bootstrap.scss";
+
+$header-height: 3.5rem;
+
+body {
+  padding-top: $header-height;
+}
+
+.header-secondary {
+  .has-toolbar {
+    display: flex;
+  }
+
+  .nav {
+    flex-direction: row;
+
+    .nav-link {
+      color: $secondary;
+
+      &:hover {
+        color: $dark;
+      }
+
+      .active {
+        color: $dark;
+      }
+    }
+  }
+}
+
+.nav-underline .active {
+  border-bottom: 2px solid;
+}

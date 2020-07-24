@@ -1,0 +1,8 @@
+en:
+  defaults:
+    column:
+      builtin_names:
+        id: "ID"
+        creator_identity_uid: "Creator identity UID"
+        created_at: "Created at"
+        updated_at: "Updated at"

@@ -1,0 +1,20 @@
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <%= nav_link_to({ controller: "projects/tables/columns" }, "Edit", edit_project_table_column_path(@project, @table, @column), class: "nav-link") %>
+  </li>
+  <% if @column.value_configurable? %>
+    <li class="nav-item">
+      <%= nav_link_to({ controller: "tables/columns/value_options" }, "Auto-Enter", edit_project_table_column_value_options_path(@project, @table, @column), class: "nav-link") %>
+    </li>
+  <% end %>
+  <% if @column.validation_configurable? %>
+    <li class="nav-item">
+      <%= nav_link_to({ controller: "tables/columns/validation_options" }, "Validations", edit_project_table_column_validation_options_path(@project, @table, @column), class: "nav-link") %>
+    </li>
+  <% end %>
+  <% if @column.storage_configurable? %>
+    <li class="nav-item">
+      <%= nav_link_to({ controller: "tables/columns/storage_options" }, "Storage", edit_project_table_column_validation_options_path(@project, @table, @column), class: "nav-link") %>
+    </li>
+  <% end %>
+</ul>

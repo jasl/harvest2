@@ -1,0 +1,61 @@
+<%- url = column.new_record? ? project_table_columns_path(project, table) : project_table_column_path(project, table, column) %>
+<%= form_with(model: column, scope: :column, url: url, local: true) do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, required: "required", class: "form-control", class_for_error: "is-invalid" %>
+    <%= f.error_message :name, class: "invalid-feedback" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_field :description, class: "form-control", class_for_error: "is-invalid" %>
+    <%= f.error_message :description, class: "invalid-feedback" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :key %>
+    <%= f.text_field :key, required: "required", disabled: column.persisted?, class: "form-control", class_for_error: "is-invalid" %>
+    <%= f.error_message :key, class: "invalid-feedback" %>
+    <span class="form-text text-muted">
+      The Key used for accessing this column through the API.
+    </span>
+  </div>
+
+  <% if column.new_record? %>
+    <%= f.hidden_field :type %>
+  <% else %>
+    <div class="form-group">
+      <%= f.label :type %>
+      <%= f.select :type, options_for_select([column.model_name.human, column.type]), {}, class_for_error: "is-invalid", disabled: column.persisted?, class: "form-control" %>
+      <%= f.error_message :type, class: "invalid-feedback" %>
+    </div>
+  <% end %>
+
+  <% if column.is_a? Columns::ForeignKey %>
+    <%= f.fields_for :relationship, column.relationship do |ff| %>
+      <div class="form-group">
+        <%= ff.label :table %>
+        <%= ff.select :table_id, options_for_table_relationship(project, selected: column.relationship.table), { include_blank: true }, class_for_error: "is-invalid", disabled: column.relationship_configured?, class: "form-control" %>
+        <%= ff.error_message :table_id, class: "invalid-feedback" %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="form-group">
+    <div class="form-check">
+      <%= f.check_box :unique, class: "form-check-input", disabled: !column.unique_configurable? %>
+      <%= f.label :unique, class: "form-check-label" %>
+    </div>
+    <%= f.error_message :unique, class: "invalid-feedback" %>
+  </div>
+
+  <div class="form-group">
+    <div class="form-check">
+      <%= f.check_box :not_null, class: "form-check-input", disabled: !column.not_null_configurable? %>
+      <%= f.label :not_null, class: "form-check-label" %>
+    </div>
+    <%= f.error_message :not_null, class: "invalid-feedback" %>
+  </div>
+
+  <%= f.submit class: "btn btn-block btn-primary" %>
+<% end %>

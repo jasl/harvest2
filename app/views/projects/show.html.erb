@@ -1,0 +1,62 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="container">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+          <h1 class="h2">
+            <%= @project.name %>
+          </h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+            <%= link_to "Back to projects", projects_path, class: "btn btn-primary mr-2" %>
+            <%= link_to "Edit the project", edit_project_path(@project), class: "btn btn-primary mr-2" %>
+            <%= link_to "Delete the project", project_path(@project), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="container">
+        <%= render "tabs" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-12">
+      <div class="container">
+        <dl class="row">
+          <dt class="col-sm-3">
+            Id
+          </dt>
+          <dd class="col-sm-9">
+            <%= @project.id %>
+          </dd>
+
+          <dt class="col-sm-3">
+            Name
+          </dt>
+          <dd class="col-sm-9">
+            <%= @project.name %>
+          </dd>
+
+          <dt class="col-sm-3">
+            Description
+          </dt>
+          <dd class="col-sm-9">
+            <%= @project.description.present? ? @project.description : "-" %>
+          </dd>
+
+          <dt class="col-sm-3">
+            Updated at
+          </dt>
+          <dd class="col-sm-9">
+            <%= time_tag @project.updated_at %>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>

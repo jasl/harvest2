@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="container">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+          <h1 class="h2">
+            New column
+          </h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+            <%= link_to "Back to table", project_table_path(@project, @table), class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-12">
+      <div class="container">
+        <% if @column.type.blank? %>
+          <%= form_with url: new_project_table_column_path(@project, @table), method: :get, local: true do |f| %>
+            <div class="form-group">
+              <%= f.label :type %>
+              <%= f.select :type, options_for_table_column_type, {}, class: "form-control" %>
+            </div>
+
+            <%= f.submit "Next", class: "btn btn-block btn-primary" %>
+          <% end %>
+        <% else %>
+          <%= render "form", project: @project, table: @table, column: @column %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
