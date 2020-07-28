@@ -11,7 +11,8 @@ class CreateTables < ActiveRecord::Migration[6.0]
       t.text :name
       t.text :description
 
-      t.boolean :builtin, null: false, default: false
+      t.boolean :protected, null: false, default: false
+      t.boolean :system, null: false, default: false
 
       t.timestamps
     end

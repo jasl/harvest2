@@ -22,7 +22,8 @@ class CreateColumns < ActiveRecord::Migration[6.0]
       t.text :validation_options
       t.text :storage_options
 
-      t.boolean :builtin, null: false, default: false
+      t.boolean :protected, null: false, default: false
+      t.boolean :system, null: false, default: false
 
       t.string :type, null: false
 

@@ -18,7 +18,7 @@ class Table < ApplicationRecord
            class_name: "Column", inverse_of: :table,
            dependent: :delete_all, validate: true, autosave: true do
     def find_primary_key_column
-      find_by type: Columns::Builtins::PrimaryKey.to_s
+      find_by type: BuiltinColumns::PrimaryKey.to_s
     end
   end
 
@@ -30,7 +30,7 @@ class Table < ApplicationRecord
             }
   validates :key,
             format: { with: Constants::KEY_REGEX },
-            unless: :builtin?
+            unless: :system?
 
   validates :name,
             presence: true
@@ -43,31 +43,22 @@ class Table < ApplicationRecord
   #                   ->(_) { "table_#{SecureRandom.hex(3)}" },
   #                   allow_nil: false
 
+  include Helpers
   include Postgres
   include Faker
   include DynamicModel
 
-  def builtin?
-    builtin || self.class.builtin?
-  end
-
-  class << self
-    def builtin?
-      false
-    end
-  end
-
   private
 
     def build_builtin_columns
-      columns.build key: BUILTIN_ID_COLUMN_KEY, type: "Columns::Builtins::PrimaryKey", not_null: false, unique: false,
-                    position: 1, builtin: true, name: I18n.t("defaults.column.builtin_names.id"),
+      columns.build key: BUILTIN_ID_COLUMN_KEY, type: "BuiltinColumns::PrimaryKey", not_null: false, unique: false,
+                    position: 1, system: true, protected: true, name: I18n.t("defaults.column.builtin_names.id"),
                     project: project
-      columns.build key: BUILTIN_CREATED_AT_COLUMN_KEY, type: "Columns::Builtins::Datetime", not_null: false, unique: false,
-                    position: 3, builtin: true, name: I18n.t("defaults.column.builtin_names.created_at"),
+      columns.build key: BUILTIN_CREATED_AT_COLUMN_KEY, type: "BuiltinColumns::Datetime", not_null: false, unique: false,
+                    position: 2, system: true, protected: true, name: I18n.t("defaults.column.builtin_names.created_at"),
                     project: project
-      columns.build key: BUILTIN_UPDATED_AT_COLUMN_KEY, type: "Columns::Builtins::Datetime", not_null: false, unique: false,
-                    position: 4, builtin: true, name: I18n.t("defaults.column.builtin_names.updated_at"),
+      columns.build key: BUILTIN_UPDATED_AT_COLUMN_KEY, type: "BuiltinColumns::Datetime", not_null: false, unique: false,
+                    position: 3, system: true, protected: true, name: I18n.t("defaults.column.builtin_names.updated_at"),
                     project: project
     end
 end

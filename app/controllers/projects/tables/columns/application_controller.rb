@@ -3,7 +3,7 @@
 module Projects::Tables::Columns
   class ApplicationController < Projects::Tables::ApplicationController
     before_action :set_column
-    before_action :forbid_builtin!
+    before_action :forbid_protected!
 
     protected
 
@@ -15,10 +15,10 @@ module Projects::Tables::Columns
         @column ||= @table.columns.find(params[:column_id])
       end
 
-      def forbid_builtin!
-        if @column.builtin?
+      def forbid_protected!
+        if @column.protected?
           redirect_to project_table_url(@project, @table),
-                      alert: "Builtin column can't be edit"
+                      alert: "Protected column can't be edit"
         end
       end
   end

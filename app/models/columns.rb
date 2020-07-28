@@ -2,15 +2,18 @@
 
 module Columns
   PRIMITIVE_TYPES = [
-    Columns::Text, Columns::Boolean, Columns::Decimal, Columns::Integer, Columns::Date, Columns::Datetime,
-    Columns::TextArray, Columns::BooleanArray, Columns::DecimalArray, Columns::IntegerArray, Columns::DateArray, Columns::DatetimeArray,
-    Columns::IntegerRange, Columns::DecimalRange, Columns::DateRange, Columns::DatetimeRange,
-    Columns::ForeignKey
+    PrimitiveColumns::Text, PrimitiveColumns::Boolean, PrimitiveColumns::Decimal,
+    PrimitiveColumns::Integer, PrimitiveColumns::Date, PrimitiveColumns::Datetime,
+    PrimitiveColumns::TextArray, PrimitiveColumns::BooleanArray, PrimitiveColumns::DecimalArray,
+    PrimitiveColumns::IntegerArray, PrimitiveColumns::DateArray, PrimitiveColumns::DatetimeArray,
+    PrimitiveColumns::IntegerRange, PrimitiveColumns::DecimalRange, PrimitiveColumns::DateRange,
+    PrimitiveColumns::DatetimeRange,
+    PrimitiveColumns::ForeignKey
   ].freeze
 
   BUILTIN_TYPES = [
-    Columns::Builtins::PrimaryKey,
-    Columns::Builtins::Datetime
+    BuiltinColumns::PrimaryKey,
+    BuiltinColumns::Datetime
   ].freeze
 
   def self.user_creatable_types

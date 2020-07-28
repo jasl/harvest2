@@ -28,7 +28,8 @@ ActiveRecord::Schema.define(version: 2020_03_07_000628) do
     t.text "value_options"
     t.text "validation_options"
     t.text "storage_options"
-    t.boolean "builtin", default: false, null: false
+    t.boolean "protected", default: false, null: false
+    t.boolean "system", default: false, null: false
     t.string "type", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -70,7 +71,8 @@ ActiveRecord::Schema.define(version: 2020_03_07_000628) do
     t.string "key", null: false
     t.text "name"
     t.text "description"
-    t.boolean "builtin", default: false, null: false
+    t.boolean "protected", default: false, null: false
+    t.boolean "system", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id", "key"], name: "index_tables_on_project_id_and_key", unique: true

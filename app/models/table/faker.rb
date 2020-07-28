@@ -43,7 +43,7 @@ class Table
 
 
     module ClassMethods
-      COLUMN_TYPES_FOR_FAKE = Columns.user_creatable_types - [Columns::ForeignKey]
+      COLUMN_TYPES_FOR_FAKE = Columns.user_creatable_types - [PrimitiveColumns::ForeignKey]
 
       def create_random_for(
         project,

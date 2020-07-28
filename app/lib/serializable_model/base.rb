@@ -17,6 +17,10 @@ module SerializableModel
       self.class.type_key
     end
 
+    def has_member?
+      attributes.any? || self.class.reflections.any?
+    end
+
     class << self
       def _embeds_reflections
         _reflections.select { |_, v| v.is_a? ActiveEntity::Reflection::EmbeddedAssociationReflection }

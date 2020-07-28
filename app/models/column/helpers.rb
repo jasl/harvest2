@@ -4,16 +4,20 @@ class Column
   module Helpers
     extend ActiveSupport::Concern
 
+    def display_configurable?
+      display_options.has_member?
+    end
+
     def value_configurable?
-      value_options.attributes.any? || value_options.class.reflections.any?
+      value_options.has_member?
     end
 
     def storage_configurable?
-      storage_options.attributes.any? || storage_options.class.reflections.any?
+      storage_options.has_member?
     end
 
     def validation_configurable?
-      validation_options.attributes.any? || validation_options.class.reflections.any?
+      validation_options&.has_member?
     end
 
     def not_null_configurable?
@@ -25,7 +29,7 @@ class Column
     end
 
     def destroyable?
-      true
+      !protected?
     end
 
     def relationship_configurable?

@@ -31,7 +31,7 @@
     </div>
   <% end %>
 
-  <% if column.is_a? Columns::ForeignKey %>
+  <% if column.relationship_configurable? %>
     <%= f.fields_for :relationship, column.relationship do |ff| %>
       <div class="form-group">
         <%= ff.label :table %>

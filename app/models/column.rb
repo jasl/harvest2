@@ -28,7 +28,7 @@ class Column < ApplicationRecord
             }
   validates :key,
             format: { with: Constants::KEY_REGEX },
-            unless: :builtin?
+            unless: :system?
 
   validates :type,
             inclusion: {
@@ -47,12 +47,16 @@ class Column < ApplicationRecord
   #                   ->(_) { "column_#{SecureRandom.hex(3)}" },
   #                   allow_nil: false
 
-  def builtin?
-    builtin || self.class.builtin?
+  def builtin_column?
+    false
   end
 
   def primitive_column?
-    true
+    false
+  end
+
+  def virtual_column?
+    false
   end
 
   def symbolized_key
@@ -60,21 +64,16 @@ class Column < ApplicationRecord
   end
 
   include Helpers
-  include Postgres
   include Faker
   include DynamicModel
 
   class << self
-    def builtin?
-      false
-    end
-
     def user_creatable?
       true
     end
   end
 
-  protected
+  private
 
     def auto_set_project_from_table
       self.project = table&.project
