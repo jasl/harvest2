@@ -16,6 +16,8 @@ module Columns
     BuiltinColumns::Datetime
   ].freeze
 
+  NOT_IN_USE_TYPES = [].freeze
+
   def self.user_creatable_types
     PRIMITIVE_TYPES
   end

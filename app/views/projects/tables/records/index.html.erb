@@ -8,6 +8,7 @@
           </h1>
           <div class="btn-toolbar mb-2 mb-md-0">
             <%= link_to "Back to project", project_path(@project), class: "btn btn-primary mr-2" %>
+            <%= link_to "New record", new_project_table_record_path(@project, @table), class: "btn btn-primary mr-2" %>
             <%= link_to "Generate random record", generate_project_table_records_path(@project, @table), method: :post, class: "btn btn-primary" %>
           </div>
         </div>
@@ -47,6 +48,7 @@
                   </td>
                 <% end %>
                 <td>
+                  <%= link_to "Edit", edit_project_table_record_path(@project, @table, record), class: "text-primary" %> |
                   <%= link_to "Destroy", project_table_record_path(@project, @table, record), method: :delete, class: "text-danger", data: { confirm: "Are you sure?" } %>
                 </td>
               </tr>

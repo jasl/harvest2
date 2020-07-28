@@ -259,12 +259,15 @@ GEM
       sprockets (>= 3.0.0)
     thor (1.0.1)
     thread_safe (0.3.6)
+    timeliness (0.4.4)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
     unicode-display_width (1.7.0)
+    validates_timeliness (5.0.0.beta2)
+      timeliness (>= 0.3.10, < 1)
     web-console (4.0.4)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -317,6 +320,7 @@ DEPENDENCIES
   selenium-webdriver
   turbolinks (~> 5)
   tzinfo-data
+  validates_timeliness (~> 5.0.0.beta2)
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 5.0)

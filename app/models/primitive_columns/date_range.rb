@@ -9,5 +9,6 @@ module PrimitiveColumns
     include Postgres
     include ColumnQuery
     include Faker
+    include DynamicModel
   end
 end

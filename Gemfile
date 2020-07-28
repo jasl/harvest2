@@ -44,6 +44,7 @@ gem "activeentity"
 gem "acts_as_list"
 gem "kaminari"
 gem "ransack"
+gem "validates_timeliness", "~> 5.0.0.beta2"
 gem "activerecord-rescue_from_duplicate"
 
 gem "faker"

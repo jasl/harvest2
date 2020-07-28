@@ -63,6 +63,10 @@ class Column < ApplicationRecord
     key.to_sym
   end
 
+  def type_key
+    self.class.type_key
+  end
+
   include Helpers
   include Faker
   include DynamicModel
@@ -70,6 +74,10 @@ class Column < ApplicationRecord
   class << self
     def user_creatable?
       true
+    end
+
+    def type_key
+      model_name.name.demodulize.underscore.to_sym
     end
   end
 

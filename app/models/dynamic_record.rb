@@ -25,5 +25,24 @@ class DynamicRecord < ActiveRecord::Base
 
       klass
     end
+
+    def wrap_attribute(attr_name, coder = Object, validate: false)
+      serialize attr_name, coder
+      if validate
+        validates_associated attr_name, if: attr_name
+      end
+      class_eval <<-RUBY, __FILE__, __LINE__ + 1
+        def #{attr_name}=(value)
+          super #{coder}.load(value)
+        end
+      RUBY
+    end
   end
+
+  private
+
+    def read_attribute_for_serialization(key)
+      attr = send key
+      attr.respond_to?(:serializable_hash) ? attr.serializable_hash : attr
+    end
 end

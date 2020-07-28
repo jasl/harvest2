@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       resources :tables do
         scope module: :tables do
           resources :relationships, only: %i[index]
-          resources :records, only: %i[index destroy] do
+          resources :records do
             collection do
               post :generate
             end

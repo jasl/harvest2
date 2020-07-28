@@ -1,0 +1,7 @@
+<div class="form-group row">
+  <%= f.label column.symbolized_key, column.name, class: 'col-sm-2 col-form-label' %>
+  <div class="col-sm-10">
+    <%= f.date_field column.symbolized_key, class: 'form-control', class_for_error: "is-invalid" %>
+    <%= f.error_message column.symbolized_key, class: "invalid-feedback" %>
+  </div>
+</div>

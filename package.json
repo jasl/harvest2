@@ -14,10 +14,11 @@
     "cocoon-js": "^0.0.5",
     "jquery": "^3.5.1",
     "popper.js": "1.16.1-lts",
+    "selectize": "^0.12.6",
     "turbolinks": "^5.2.0"
   },
   "devDependencies": {
-    "webpack": "^4.43.0",
+    "webpack": "^4.44.0",
     "webpack-dev-server": "^3.11.0"
   },
   "resolutions": {

@@ -1,0 +1,10 @@
+<% url = record.new_record? ? project_table_records_path(project, table) : project_table_record_path(project, table, record) %>
+<% method = record.new_record? ? :post : :patch %>
+<%= form_with(model: record, scope: :record, url: url, method: method, local: true) do |f| %>
+  <% table.columns.each do |column| %>
+    <% next if column.builtin_column? %>
+    <%= render "_columns/inputs/#{column.type_key}", f: f, column: column %>
+  <% end %>
+
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>

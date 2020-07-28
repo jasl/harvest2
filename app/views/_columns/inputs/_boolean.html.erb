@@ -1,0 +1,10 @@
+<div class="form-group row">
+  <div class="col-sm-2"><%= column.name %></div>
+  <div class="col-sm-10">
+    <div class="form-check form-check-inline">
+      <%= f.check_box column.symbolized_key, class: "form-check-input", id: column.symbolized_key, required: column.not_null?, class_for_error: "is-invalid" %>
+      <%#= f.label column.symbolized_key, column.name, class: "form-check-label", for: column.symbolized_key %>
+    </div>
+    <%= f.error_message column.symbolized_key, class: "invalid-feedback" %>
+  </div>
+</div>

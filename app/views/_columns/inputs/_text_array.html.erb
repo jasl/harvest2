@@ -1,0 +1,26 @@
+<div class="form-group row">
+  <%= f.label column.symbolized_key, column.name, class: 'col-sm-2 col-form-label' %>
+  <div class="col-sm-10">
+    <%= f.select column.symbolized_key, Array.wrap(f.object.send(column.symbolized_key)), { include_blank: false }, class: column.symbolized_key, id: column.symbolized_key, required: column.not_null?, multiple: true %>
+    <%= f.error_message column.symbolized_key, class: "invalid-feedback" %>
+  </div>
+</div>
+
+<script>
+  <% nesting ||= false %>
+  <% if nesting %>
+  $("select[class*='<%= column.symbolized_key %>'][class!='selectized']").selectize({
+    create: true,
+    maxItems: 32,
+    allowEmptyOption: false
+  });
+  <% else %>
+  document.addEventListener("turbolinks:load", function() {
+    $("select[class*='<%= column.symbolized_key %>'][class!='selectized']").selectize({
+      create: true,
+      maxItems: 32,
+      allowEmptyOption: false
+    });
+  });
+  <% end %>
+</script>
