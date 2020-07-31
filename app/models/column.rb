@@ -68,6 +68,7 @@ class Column < ApplicationRecord
   end
 
   include Helpers
+  include ColumnQuery
   include Faker
   include DynamicModel
 

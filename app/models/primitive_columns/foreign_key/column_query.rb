@@ -5,7 +5,7 @@ class PrimitiveColumns::ForeignKey
     extend ActiveSupport::Concern
 
     def query_condition_class
-      ::ColumnQueryConditions::ForeignKey
+      ::ColumnFilterConditions::ForeignKey
     end
   end
 end

@@ -5,7 +5,7 @@ class PrimitiveColumns::Decimal
     extend ActiveSupport::Concern
 
     def query_condition_class
-      ::ColumnQueryConditions::Decimal
+      ::ColumnFilterConditions::Decimal
     end
   end
 end

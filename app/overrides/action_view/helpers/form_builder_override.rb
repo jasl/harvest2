@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
 ActionView::Helpers::FormBuilder.class_eval do
-  def error_message(method, tag: :div, ref_method: nil, escape: true, **options, &block)
+  def error_message(method, tag: :div, ref_method: nil, with_name: false, escape: true, **options, &block)
     return if object.errors.empty?
 
     error = object.errors[method]&.first
     error ||= object.errors[ref_method]&.first if ref_method
     return unless error
+
+    if with_name
+      error = "#{object.class.human_attribute_name(ref_method || method)} #{error}"
+    end
 
     if block_given?
       @template.content_tag(tag, options, nil, escape, &block)
@@ -15,11 +19,13 @@ ActionView::Helpers::FormBuilder.class_eval do
     end
   end
 
-  %i[text_field password_field file_field text_area
-     color_field search_field telephone_field
-     phone_field date_field time_field datetime_field
-     datetime_local_field month_field week_field url_field
-     email_field number_field range_field].each do |selector|
+  %i[
+    text_field password_field file_field text_area
+    color_field search_field telephone_field
+    phone_field date_field time_field datetime_field
+    datetime_local_field month_field week_field url_field
+    email_field number_field range_field
+  ].each do |selector|
     alias_method :"_#{selector}", selector unless instance_methods(false).include?(:"_#{selector}")
     class_eval <<-RUBY_EVAL, __FILE__, __LINE__ + 1
       def #{selector}(method, **options)

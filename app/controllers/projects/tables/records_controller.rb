@@ -8,8 +8,21 @@ class Projects::Tables::RecordsController < Projects::Tables::ApplicationControl
     prepare_meta_tags title: "Records"
     @_breadcrumbs << { text: "Records" }
 
-    @columns = @table.columns
-    @records = @model.page(params[:page]).per(params[:per_page])
+    @query =
+      if params[:query].present?
+        @table.queries.new query_params
+      else
+        @table.queries.new
+      end
+    @query.one_time_usage = true
+
+    @records =
+      if @query.valid?
+        @query.to_query
+      else
+        @model.none
+      end
+    @records = @records.page(params[:page]).per(params[:per_page])
   end
 
   def new
@@ -87,5 +100,18 @@ class Projects::Tables::RecordsController < Projects::Tables::ApplicationControl
 
     def record_params
       params.require(:record).permit!
+    end
+
+    def query_params
+      params
+        .require(:query)
+        .permit(
+          column_filter_group_attributes: [
+            :id, :matcher,
+            conditions_attributes: [
+              :id, :column_id, :type, :_destroy, configuration: {}
+            ]
+          ]
+        )
     end
 end

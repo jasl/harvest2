@@ -1,0 +1,31 @@
+<div class="nested_form mb-3">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h4 class="mb-0">
+      <%= f.object.column.name %>
+    </h4>
+
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <%= link_to_remove_association "Remove", f, class: "btn btn-sm btn-outline-danger", wrapper_class: "nested_form" %>
+    </div>
+  </div>
+
+  <%= f.hidden_field :id %>
+  <%= f.hidden_field :column_id %>
+  <%= f.hidden_field :type %>
+  <%= f.fields :configuration, model: f.object.configuration do |ff| %>
+    <div class="form-group">
+      <div class="form-row">
+        <div class="col-3">
+          <%= ff.label :operator %>
+          <%= ff.select :operator, options_for_select(f.object.configuration.defined_enums["operator"].map { |k, v| [ff.object.class.human_enum_value(:operator, k), v] }, ff.object.operator), {}, class_for_error: "is-invalid", class: "form-control" %>
+          <%= ff.error_message :operator, class: "text-danger text-block" %>
+        </div>
+        <div class="col">
+          <%= ff.label :value %>
+          <%= ff.number_field :value, step: 1, class: "form-control", class_for_error: "is-invalid" %>
+          <%= ff.error_message :value, class: "text-danger text-block" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

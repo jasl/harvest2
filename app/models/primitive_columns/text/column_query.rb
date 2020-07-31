@@ -5,7 +5,7 @@ class PrimitiveColumns::Text
     extend ActiveSupport::Concern
 
     def query_condition_class
-      ::ColumnQueryConditions::Text
+      ::ColumnFilterConditions::Text
     end
   end
 end

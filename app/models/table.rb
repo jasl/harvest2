@@ -22,6 +22,9 @@ class Table < ApplicationRecord
     end
   end
 
+  has_many :queries, class_name: "TableQuery",
+           dependent: :destroy
+
   validates :key,
             presence: true,
             uniqueness: { scope: :project },

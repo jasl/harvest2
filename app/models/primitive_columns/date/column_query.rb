@@ -5,7 +5,7 @@ class PrimitiveColumns::Date
     extend ActiveSupport::Concern
 
     def query_condition_class
-      ::ColumnQueryConditions::Date
+      ::ColumnFilterConditions::Date
     end
   end
 end

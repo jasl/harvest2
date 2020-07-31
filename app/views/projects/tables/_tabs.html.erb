@@ -8,4 +8,7 @@
   <li class="nav-item">
     <%= nav_link_to({controller: 'projects/tables/records'}, "Records", project_table_records_path(@project, @table), class: "nav-link") %>
   </li>
+  <li class="nav-item">
+    <%= nav_link_to({controller: 'projects/tables/queries'}, "Queries", project_table_queries_path(@project, @table), class: "nav-link") %>
+  </li>
 </ul>

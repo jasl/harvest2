@@ -1,0 +1,36 @@
+<% url = query.new_record? ? project_table_queries_path(project, table) : project_table_query_path(project, table, query)  %>
+<%= form_with(model: query, scope: :query, url: url, local: true) do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, required: "required", class: "form-control", class_for_error: "is-invalid" %>
+    <%= f.error_message :name, class: "invalid-feedback" %>
+  </div>
+
+  <%= f.fields_for :column_filter_group do |ff| %>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h3>
+        Column query conditions
+      </h3>
+    </div>
+
+    <div id="column_query_conditions" class="collection mb-3">
+      <%= ff.fields_for :conditions do |fff| %>
+        <%= render "projects/tables/queries/_column_query_condition_forms/#{fff.object.type_key}", f: fff, project: project %>
+      <% end %>
+
+      <div class="links">
+        <% table.columns.select(&:can_query?).each do |column| %>
+          <%= link_to_add_association "Add for #{column.name}", ff, :conditions,
+                                      class: "btn btn-small btn-outline-primary",
+                                      wrap_object: -> (_record) { column.query_condition_class.new column: column },
+                                      partial: "projects/tables/queries/_column_query_condition_forms/#{column.query_condition_class.type_key}",
+                                      render_options: {
+                                        locals: { column: column }
+                                      } %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>

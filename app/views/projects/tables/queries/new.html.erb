@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="container">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+          <h1 class="h2">
+            <%= @table.name %>
+          </h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+            <%= link_to "Back to queries", project_table_queries_path(@project, @table), class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="container mb-3">
+        <%= render "projects/tables/tabs" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-12">
+    <div class="container">
+      <%= render "form", project: @project, table: @table, query: @query %>
+    </div>
+  </div>
+</div>

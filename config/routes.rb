@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     scope module: :projects do
       resources :tables do
         scope module: :tables do
+          resources :queries
           resources :relationships, only: %i[index]
           resources :records do
             collection do
