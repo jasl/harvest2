@@ -12,9 +12,11 @@ class DynamicRecord < ActiveRecord::Base
 
     def derive(table)
       klass = Class.new(self)
+
       klass.table_id = table.id
       klass.table_name = table.pg_table_name
       klass.name = "dynamic_generated_project_#{table.project_id}_#{table.key}".classify
+
       table.columns.each do |column|
         column.on_building_ar_model(klass)
       end
