@@ -10,10 +10,10 @@ class Column
     end
 
     def on_building_ar_model(ar_model)
-      display_options.on_building_ar_model ar_model, self
-      value_options.on_building_ar_model ar_model, self
-      validation_options.on_building_ar_model ar_model, self
-      storage_options.on_building_ar_model ar_model, self
+      display_configuration.on_building_ar_model ar_model, self
+      value_configuration.on_building_ar_model ar_model, self
+      validation_configuration.on_building_ar_model ar_model, self
+      storage_configuration.on_building_ar_model ar_model, self
 
       if primitive_column?
         if not_null?

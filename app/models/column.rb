@@ -8,16 +8,16 @@ class Column < ApplicationRecord
 
   acts_as_list add_new_at: :bottom, top_of_list: 1
 
-  serialize :display_options, ColumnOptions
-  serialize :value_options, ColumnOptions
-  serialize :validation_options, ColumnOptions
-  serialize :storage_options, ColumnOptions
+  serialize :display_configuration, ColumnConfiguration
+  serialize :value_configuration, ColumnConfiguration
+  serialize :validation_configuration, ColumnConfiguration
+  serialize :storage_configuration, ColumnConfiguration
 
   after_initialize do
-    self.display_options ||= ColumnOptions.new
-    self.value_options ||= ColumnOptions.new
-    self.validation_options ||= ColumnOptions.new
-    self.storage_options ||= ColumnOptions.new
+    self.display_configuration ||= ColumnConfiguration.new
+    self.value_configuration ||= ColumnConfiguration.new
+    self.validation_configuration ||= ColumnConfiguration.new
+    self.storage_configuration ||= ColumnConfiguration.new
   end
 
   validates :key,

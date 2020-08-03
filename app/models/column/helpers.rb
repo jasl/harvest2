@@ -5,19 +5,19 @@ class Column
     extend ActiveSupport::Concern
 
     def display_configurable?
-      display_options.has_member?
+      display_configuration.has_member?
     end
 
     def value_configurable?
-      value_options.has_member?
+      value_configuration.has_member?
     end
 
     def storage_configurable?
-      storage_options.has_member?
+      storage_configuration.has_member?
     end
 
     def validation_configurable?
-      validation_options&.has_member?
+      validation_configuration&.has_member?
     end
 
     def not_null_configurable?

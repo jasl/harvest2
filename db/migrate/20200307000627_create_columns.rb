@@ -17,10 +17,10 @@ class CreateColumns < ActiveRecord::Migration[6.0]
       t.boolean :not_null, null: false, default: false
       t.boolean :unique, null: false, default: false
 
-      t.text :display_options
-      t.text :value_options
-      t.text :validation_options
-      t.text :storage_options
+      t.text :display_configuration
+      t.text :value_configuration
+      t.text :validation_configuration
+      t.text :storage_configuration
 
       t.boolean :protected, null: false, default: false
       t.boolean :system, null: false, default: false

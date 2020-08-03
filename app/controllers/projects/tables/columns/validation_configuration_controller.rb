@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class Projects::Tables::Columns::ValidationOptionsController < Projects::Tables::Columns::ApplicationController
-  before_action :set_options, only: %i[edit update]
+class Projects::Tables::Columns::ValidationConfigurationController < Projects::Tables::Columns::ApplicationController
+  before_action :set_configuration, only: %i[edit update]
 
   def edit
     prepare_meta_tags title: "Validation"
@@ -9,12 +9,12 @@ class Projects::Tables::Columns::ValidationOptionsController < Projects::Tables:
   end
 
   def update
-    @options.assign_attributes(options_params)
+    @configuration.assign_attributes(options_params)
 
     respond_to do |format|
-      if @options.valid? && @column.save(validate: false)
+      if @configuration.valid? && @column.save(validate: false)
         format.html do
-          redirect_to edit_project_table_column_validation_options_url(@project, @table, @column),
+          redirect_to edit_project_table_column_validation_configuration_url(@project, @table, @column),
                       notice: "Column was successfully updated."
         end
       else
@@ -30,11 +30,11 @@ class Projects::Tables::Columns::ValidationOptionsController < Projects::Tables:
 
   private
 
-    def set_options
-      @options = @column.value_options
+    def set_configuration
+      @configuration = @column.value_configuration
     end
 
     def options_params
-      params.fetch(:options, {}).permit!
+      params.fetch(:configuration, {}).permit!
     end
 end

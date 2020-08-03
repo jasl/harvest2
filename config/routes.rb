@@ -15,9 +15,10 @@ Rails.application.routes.draw do
           end
           resources :columns, except: %i[index show] do
             scope module: "columns" do
-              resource :value_options, only: %i[edit update]
-              resource :validation_options, only: %i[edit update]
-              resource :storage_options, only: %i[edit update]
+              resource :display_configuration, only: %i[edit update]
+              resource :value_configuration, only: %i[edit update]
+              resource :validation_configuration, only: %i[edit update]
+              resource :storage_configuration, only: %i[edit update]
             end
           end
         end

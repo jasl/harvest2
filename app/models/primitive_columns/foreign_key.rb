@@ -2,9 +2,9 @@
 
 module PrimitiveColumns
   class ForeignKey < PrimitiveColumn
-    # serialize :value_options, ValueOptions
-    # serialize :validation_options, ValidationOptions
-    # serialize :storage_options, StorageOptions
+    # serialize :value_configuration, ValueConfiguration
+    # serialize :validation_configuration, ValidationConfiguration
+    # serialize :storage_configuration, StorageConfiguration
 
     has_one :relationship, class_name: "Relationships::BelongsTo",
             foreign_key: "foreign_column_id", inverse_of: :foreign_column,

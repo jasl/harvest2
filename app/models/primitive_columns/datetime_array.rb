@@ -2,9 +2,9 @@
 
 module PrimitiveColumns
   class DatetimeArray < PrimitiveColumn
-    # serialize :value_options, ValueOptions
-    # serialize :validation_options, ValidationOptions
-    # serialize :storage_options, StorageOptions
+    # serialize :value_configuration, ValueConfiguration
+    # serialize :validation_configuration, ValidationConfiguration
+    # serialize :storage_configuration, StorageConfiguration
 
     include Postgres
     include ColumnQuery
