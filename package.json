@@ -10,7 +10,7 @@
     "@rails/activestorage": "^6.0.3",
     "@rails/ujs": "^6.0.3",
     "@rails/webpacker": "5.1.1",
-    "bootstrap": "^4.5.0",
+    "bootstrap": "^4.5.1",
     "cocoon-js": "^0.0.5",
     "jquery": "^3.5.1",
     "popper.js": "1.16.1-lts",
@@ -18,7 +18,7 @@
     "turbolinks": "^5.2.0"
   },
   "devDependencies": {
-    "webpack": "^4.44.0",
+    "webpack": "^4.44.1",
     "webpack-dev-server": "^3.11.0"
   },
   "resolutions": {
