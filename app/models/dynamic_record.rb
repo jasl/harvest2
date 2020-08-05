@@ -28,7 +28,7 @@ class DynamicRecord < ActiveRecord::Base
       klass
     end
 
-    def wrap_attribute(attr_name, coder = Object, validate: false)
+    def decorate_attribute(attr_name, coder = Object, validate: false)
       serialize attr_name, coder
       if validate
         validates_associated attr_name, if: attr_name
