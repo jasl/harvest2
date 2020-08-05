@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: b39ea7cc3662345ad8efbe496db5ae594449f85f
+  revision: 8654891cc7d0ea80b67ef7d352cc81463f526532
   specs:
     actioncable (6.1.0.alpha)
       actionpack (= 6.1.0.alpha)
@@ -217,7 +217,7 @@ GEM
     rack (2.2.3)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
-    rack-mini-profiler (2.0.3)
+    rack-mini-profiler (2.0.4)
       rack (>= 1.2.0)
     rack-proxy (0.6.5)
       rack
@@ -240,7 +240,7 @@ GEM
       ffi (~> 1.0)
     regexp_parser (1.7.1)
     rexml (3.2.4)
-    rubocop (0.88.0)
+    rubocop (0.89.0)
       parallel (~> 1.10)
       parser (>= 2.7.1.1)
       rainbow (>= 2.2.2, < 4.0)
@@ -313,6 +313,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   cocoon
+  concurrent-ruby
   config
   faker
   inline_svg

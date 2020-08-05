@@ -5,8 +5,7 @@ class Column
     extend ActiveSupport::Concern
 
     included do
-      after_create :unload_cached_ar_model
-      after_destroy :unload_cached_ar_model
+      after_destroy :invalidate_project_models_cluster
     end
 
     def on_building_ar_model(ar_model)
@@ -25,8 +24,8 @@ class Column
       end
     end
 
-    def unload_cached_ar_model
-      table.unload_cached_ar_model
+    def invalidate_project_models_cluster
+      table.invalidate_project_models_cluster
     end
   end
 end

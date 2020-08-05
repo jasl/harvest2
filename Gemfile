@@ -34,6 +34,8 @@ gem "config"
 
 gem "lru_redux"
 
+gem "concurrent-ruby"
+
 gem "rack-cors"
 
 gem "meta-tags"

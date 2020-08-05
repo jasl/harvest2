@@ -5,23 +5,22 @@ class Table
     extend ActiveSupport::Concern
 
     included do
-      after_destroy :unload_cached_ar_model
+      after_destroy :invalidate_project_models_cluster
     end
 
-    def ar_model_cache_key
-      "#{pg_table_name}.ar_model"
+    def project_models_cluster
+      Globals.project_models_cluster_cache.getset(project_id) do
+        DynamicModelsCluster.new
+      end
     end
 
-    def unload_cached_ar_model
-      Globals.table_ar_model_cache.delete ar_model_cache_key
-      self.class.connection.schema_cache.clear_data_source_cache!(pg_table_name)
+    def invalidate_project_models_cluster
+      Globals.project_models_cluster_cache.delete(project_id)
     end
 
     def to_ar_model(reload: false)
-      unload_cached_ar_model if reload
-      Globals.table_ar_model_cache.getset(ar_model_cache_key) do
-        DynamicRecord.derive(self)
-      end
+      invalidate_project_models_cluster if reload
+      project_models_cluster[key] ||= DynamicRecord.derive(self)
     end
 
     def configure_ar_model(model, build_relationships: false)

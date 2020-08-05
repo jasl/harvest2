@@ -11,6 +11,8 @@ class DynamicRecord < ActiveRecord::Base
     attr_accessor :table_id, :name
 
     def derive(table)
+      connection.schema_cache.clear_data_source_cache!(table.pg_table_name)
+
       klass = Class.new(self)
 
       klass.table_id = table.id
