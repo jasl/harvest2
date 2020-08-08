@@ -5,7 +5,7 @@ class Column
     extend ActiveSupport::Concern
 
     included do
-      after_save :invalidate_project_models_cluster
+      after_create :invalidate_project_models_cluster
       after_destroy :invalidate_project_models_cluster
     end
 

@@ -8,7 +8,7 @@ class DynamicRecord < ActiveRecord::Base
   include EnumAttributeLocalizable
 
   class << self
-    attr_accessor :table_id, :name
+    attr_accessor :table_id, :name, :model_name
 
     def derive(table)
       connection.schema_cache.clear_data_source_cache!(table.pg_table_name)
@@ -18,6 +18,7 @@ class DynamicRecord < ActiveRecord::Base
       klass.table_id = table.id
       klass.table_name = table.pg_table_name
       klass.name = "generated/project_#{table.project_id}/table_#{table.key}".classify
+      klass.model_name = ActiveModel::Name.new(klass, false)
 
       klass.reset_column_information
 

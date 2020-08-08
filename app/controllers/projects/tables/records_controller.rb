@@ -78,8 +78,13 @@ class Projects::Tables::RecordsController < Projects::Tables::ApplicationControl
   def destroy
     @record.destroy
 
-    redirect_back fallback_location: project_table_records_url(@project, @table),
-                  notice: "Record was successfully destroyed."
+    if @record.destroyed?
+      redirect_back fallback_location: project_table_records_url(@project, @table),
+                    notice: "Record was successfully destroyed."
+    else
+      redirect_back fallback_location: project_table_records_url(@project, @table),
+                    notice: "Record can't be destroyed."
+    end
   end
 
   def generate
