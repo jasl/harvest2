@@ -91,7 +91,7 @@ class Projects::Tables::RecordsController < Projects::Tables::ApplicationControl
   private
 
     def set_model
-      @model = @table.to_ar_model
+      @model = @table.ar_model
     end
 
     def set_record

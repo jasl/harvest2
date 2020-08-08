@@ -44,8 +44,7 @@ class TableQuery < ApplicationRecord
   end
 
   def to_query
-    ar_model = table.to_ar_model
-    query = ar_model.all
+    query = table_ar_model.all
     apply_to query
   end
 
@@ -53,5 +52,9 @@ class TableQuery < ApplicationRecord
 
     def set_redundancies
       self.project = table&.project
+    end
+
+    def table_ar_model
+      table.ar_model
     end
 end

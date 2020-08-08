@@ -12,14 +12,6 @@ class PrimitiveColumn
 
       after_commit :add_or_remove_pg_table_index
       after_commit :remove_pg_table_column, on: :destroy
-
-      validates :unique,
-                absence: true,
-                unless: :uniqueable?
-
-      validates :not_null,
-                absence: true,
-                unless: :not_nullable?
     end
 
     module ClassMethods
@@ -35,18 +27,6 @@ class PrimitiveColumn
       end
 
       index_name
-    end
-
-    def not_nullable?
-      if new_record?
-        !table.to_ar_model.exists?
-      else
-        table.to_ar_model.where(key => nil).size.zero?
-      end
-    end
-
-    def uniqueable?
-      new_record? || !table.to_ar_model.select(key).group(key).having("count(*) > 1").exists?
     end
 
     def add_pg_table_column

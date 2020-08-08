@@ -5,6 +5,7 @@ class Column
     extend ActiveSupport::Concern
 
     included do
+      after_save :invalidate_project_models_cluster
       after_destroy :invalidate_project_models_cluster
     end
 
@@ -25,7 +26,7 @@ class Column
     end
 
     def invalidate_project_models_cluster
-      table.invalidate_project_models_cluster
+      project.invalidate_project_models_cluster
     end
   end
 end

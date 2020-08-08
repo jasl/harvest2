@@ -39,6 +39,14 @@ class Column < ApplicationRecord
   validates :name,
             presence: true
 
+  validates :unique,
+            absence: true,
+            unless: :uniqueable?
+
+  validates :not_null,
+            absence: true,
+            unless: :not_nullable?
+
   attr_readonly :key, :project_id, :table_id, :type
 
   before_validation :auto_set_project_from_table
@@ -46,6 +54,18 @@ class Column < ApplicationRecord
   # default_value_for :key,
   #                   ->(_) { "column_#{SecureRandom.hex(3)}" },
   #                   allow_nil: false
+
+  def not_nullable?
+    if new_record?
+      !table_ar_model.exists?
+    else
+      table_ar_model.where(key => nil).size.zero?
+    end
+  end
+
+  def uniqueable?
+    new_record? || !table_ar_model.select(key).group(key).having("count(*) > 1").exists?
+  end
 
   def builtin_column?
     false
@@ -86,5 +106,9 @@ class Column < ApplicationRecord
 
     def auto_set_project_from_table
       self.project = table&.project
+    end
+
+    def table_ar_model
+      table.ar_model
     end
 end

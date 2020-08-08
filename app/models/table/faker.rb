@@ -5,7 +5,7 @@ class Table
     extend ActiveSupport::Concern
 
     def build_random_record
-      record = to_ar_model.new
+      record = ar_model.new
       columns.each { |column| column.assign_random_value(record) }
       record
     end
@@ -17,7 +17,7 @@ class Table
     end
 
     def batch_create_random_record(batch_size = 10, disable_logger: false)
-      model = to_ar_model
+      model = ar_model
 
       old_logger = nil
       if disable_logger
