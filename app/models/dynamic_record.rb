@@ -7,6 +7,8 @@ class DynamicRecord < ActiveRecord::Base
   include ActsAsDefaultValue
   include EnumAttributeLocalizable
 
+  scope :preload_all_belongs_to, -> { belongs_to_association_names.any? ? includes(*belongs_to_association_names) : current_scope }
+
   class << self
     attr_accessor :table_id, :name, :model_name
 
@@ -35,6 +37,10 @@ class DynamicRecord < ActiveRecord::Base
           super #{coder}.load(value)
         end
       RUBY
+    end
+
+    def belongs_to_association_names
+      reflections.select { |_, v| v.is_a? ActiveRecord::Reflection::BelongsToReflection }.keys
     end
   end
 

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class CreateColumnFilterConditions < ActiveRecord::Migration[6.0]
   def change
     create_table :column_filter_conditions do |t|

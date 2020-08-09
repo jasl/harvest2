@@ -89,7 +89,7 @@ class Projects::TablesController < Projects::ApplicationController
     end
 
     def table_params
-      params.require(:table).permit(:name, :description)
+      params.require(:table).permit(:name, :description, :thumbnail_column_id)
     end
 
     def set_table_layout_data

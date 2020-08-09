@@ -25,8 +25,14 @@ class Column
       end
     end
 
-    def invalidate_project_models_cluster
-      project.invalidate_project_models_cluster
+    def render_value(record, view_context: nil)
+      record.read_attribute(key)
     end
+
+    private
+
+      def invalidate_project_models_cluster
+        project.invalidate_project_models_cluster
+      end
   end
 end

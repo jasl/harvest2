@@ -26,6 +26,7 @@ module PrimitiveColumns
     include ColumnQuery
     include Faker
     include Helpers
+    include DynamicModel
 
     private
 

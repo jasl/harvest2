@@ -13,13 +13,6 @@ class Column < ApplicationRecord
   serialize :validation_configuration, ColumnConfiguration
   serialize :storage_configuration, ColumnConfiguration
 
-  after_initialize do
-    self.display_configuration ||= ColumnConfiguration.new
-    self.value_configuration ||= ColumnConfiguration.new
-    self.validation_configuration ||= ColumnConfiguration.new
-    self.storage_configuration ||= ColumnConfiguration.new
-  end
-
   validates :key,
             presence: true,
             uniqueness: { scope: :table },
@@ -50,6 +43,12 @@ class Column < ApplicationRecord
   attr_readonly :key, :project_id, :table_id, :type
 
   before_validation :auto_set_project_from_table
+
+  before_destroy do
+    next unless table.thumbnail_column_id == id
+
+    table.update_column :thumbnail_column_id, nil
+  end
 
   # default_value_for :key,
   #                   ->(_) { "column_#{SecureRandom.hex(3)}" },

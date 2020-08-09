@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-class CreateColumnFilterGroups < ActiveRecord::Migration[6.0]
+class CreateColumnFilterGroups < ActiveRecord::Migration[6.1]
   def change
     create_table :column_filter_groups do |t|
       t.references :project, foreign_key: true, null: false

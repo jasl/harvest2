@@ -18,12 +18,16 @@ class Table < ApplicationRecord
            class_name: "Column", inverse_of: :table,
            dependent: :delete_all, validate: true, autosave: true do
     def find_primary_key_column
-      find_by type: BuiltinColumns::PrimaryKey.to_s
+      find_by type: "BuiltinColumns::PrimaryKey"
     end
   end
 
   has_many :queries, class_name: "TableQuery",
            dependent: :destroy
+
+  belongs_to :thumbnail_column,
+             class_name: "Column",
+             optional: true
 
   validates :key,
             presence: true,
@@ -50,6 +54,22 @@ class Table < ApplicationRecord
   include Postgres
   include Faker
   include DynamicModel
+
+  def thumbnail_column
+    if thumbnail_column_id.present?
+      if columns.loaded?
+        columns.find { |c| c.id == thumbnail_column_id }
+      else
+        super
+      end
+    else
+      if columns.loaded?
+        columns.find { |c| c.type == "BuiltinColumns::PrimaryKey" }
+      else
+        columns.find_primary_key_column
+      end
+    end
+  end
 
   private
 

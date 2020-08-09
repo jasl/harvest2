@@ -14,4 +14,11 @@ module ProjectsHelper
       selected&.id
     )
   end
+
+  def options_for_table_columns(table, selected: nil)
+    options_for_select(
+      table.columns.pluck(:name, :id),
+      selected&.id
+    )
+  end
 end

@@ -50,7 +50,7 @@
               <tr>
                 <% @table.columns.each do |column| %>
                   <td>
-                    <%= record.read_attribute(column.key) %>
+                    <%= column.render_value(record, view_context: self) %>
                   </td>
                 <% end %>
                 <td>

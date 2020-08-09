@@ -22,6 +22,7 @@ class Projects::Tables::RecordsController < Projects::Tables::ApplicationControl
       else
         @model.none
       end
+    @records = @records.preload_all_belongs_to
     @records = @records.page(params[:page]).per(params[:per_page])
   end
 

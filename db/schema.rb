@@ -118,8 +118,10 @@ ActiveRecord::Schema.define(version: 2020_03_11_212224) do
     t.boolean "system", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "thumbnail_column_id"
     t.index ["project_id", "key"], name: "index_tables_on_project_id_and_key", unique: true
     t.index ["project_id"], name: "index_tables_on_project_id"
+    t.index ["thumbnail_column_id"], name: "index_tables_on_thumbnail_column_id"
   end
 
   add_foreign_key "column_filter_conditions", "column_filter_groups", column: "filter_group_id"
@@ -139,5 +141,6 @@ ActiveRecord::Schema.define(version: 2020_03_11_212224) do
   add_foreign_key "relationships", "tables", column: "foreign_table_id"
   add_foreign_key "table_queries", "projects"
   add_foreign_key "table_queries", "tables"
+  add_foreign_key "tables", "columns", column: "thumbnail_column_id"
   add_foreign_key "tables", "projects"
 end

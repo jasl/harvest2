@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-class CreateTableQueries < ActiveRecord::Migration[6.0]
+class CreateTableQueries < ActiveRecord::Migration[6.1]
   def change
     create_table :table_queries do |t|
       t.references :project, foreign_key: true, null: false
