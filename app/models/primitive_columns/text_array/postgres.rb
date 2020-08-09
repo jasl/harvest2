@@ -4,10 +4,8 @@ class PrimitiveColumns::TextArray
   module Postgres
     extend ActiveSupport::Concern
 
-    module ClassMethods
-      def pg_type
-        "text[]"
-      end
+    def pg_type
+      "text[]"
     end
   end
 end

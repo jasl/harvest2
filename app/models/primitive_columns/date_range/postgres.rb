@@ -4,10 +4,8 @@ class PrimitiveColumns::DateRange
   module Postgres
     extend ActiveSupport::Concern
 
-    module ClassMethods
-      def pg_type
-        "daterange"
-      end
+    def pg_type
+      "daterange"
     end
   end
 end

@@ -4,10 +4,8 @@ class PrimitiveColumns::BooleanArray
   module Postgres
     extend ActiveSupport::Concern
 
-    module ClassMethods
-      def pg_type
-        "boolean[]"
-      end
+    def pg_type
+      "boolean[]"
     end
   end
 end

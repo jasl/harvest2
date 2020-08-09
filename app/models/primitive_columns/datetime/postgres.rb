@@ -4,10 +4,8 @@ class PrimitiveColumns::Datetime
   module Postgres
     extend ActiveSupport::Concern
 
-    module ClassMethods
-      def pg_type
-        "timestamp"
-      end
+    def pg_type
+      "timestamp"
     end
   end
 end

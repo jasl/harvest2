@@ -14,10 +14,8 @@ class PrimitiveColumn
       after_commit :remove_pg_table_column, on: :destroy
     end
 
-    module ClassMethods
-      def pg_type
-        raise NotImplementedError
-      end
+    def pg_type
+      raise NotImplementedError
     end
 
     def pg_uniqueness_index_name
@@ -30,7 +28,7 @@ class PrimitiveColumn
     end
 
     def add_pg_table_column
-      self.class.connection.add_column pg_table_name, key, self.class.pg_type, null: !not_null
+      self.class.connection.add_column pg_table_name, key, pg_type, null: !not_null
       if unique
         self.class.connection.add_index pg_table_name, key, unique: true, name: pg_uniqueness_index_name
       end
