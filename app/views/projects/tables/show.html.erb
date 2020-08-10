@@ -7,8 +7,8 @@
             <%= @table.name %>
           </h1>
           <div class="btn-toolbar mb-2 mb-md-0">
-            <%= link_to "Back to project", project_path(@project), class: "btn btn-primary mr-2" %>
-            <%= link_to "Edit the table", edit_project_table_path(@project, @table), class: "btn btn-primary mr-2" %>
+            <%= link_to "Back to project", project_path(@project), class: "btn btn-primary me-2" %>
+            <%= link_to "Edit the table", edit_project_table_path(@project, @table), class: "btn btn-primary me-2" %>
             <%= link_to "Delete the table", project_table_path(@project, @table), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
           </div>
         </div>
@@ -79,7 +79,7 @@
           </div>
         </div>
 
-        <table class="table">
+        <table class="table table-striped">
           <thead>
           <tr>
             <th>Name</th>

@@ -1,11 +1,11 @@
 <%= form_with(model: [project, table], local: true) do |f| %>
-  <div class="form-group">
+  <div class="mb-3">
     <%= f.label :name %>
     <%= f.text_field :name, id: "table_title", required: "required", class: "form-control", class_for_error: "is-invalid" %>
     <%= f.error_message :name, class: "invalid-feedback" %>
   </div>
 
-  <div class="form-group">
+  <div class="mb-3">
     <%= f.label :key %>
     <%= f.text_field :key, required: "required", disabled: table.persisted?, class: "form-control", class_for_error: "is-invalid" %>
     <%= f.error_message :key, class: "invalid-feedback" %>
@@ -14,14 +14,14 @@
     </span>
   </div>
 
-  <div class="form-group">
+  <div class="mb-3">
     <%= f.label :description %>
     <%= f.text_field :description, class: "form-control", class_for_error: "is-invalid" %>
     <%= f.error_message :description, class: "invalid-feedback" %>
   </div>
 
   <% if table.persisted? %>
-    <div class="form-group">
+    <div class="mb-3">
       <%= f.label :thumbnail_column %>
       <%= f.select :thumbnail_column_id, options_for_table_columns(table, selected: table.thumbnail_column), {}, class_for_error: "is-invalid", class: "form-control" %>
       <%= f.error_message :thumbnail_column_id, class: "invalid-feedback" %>

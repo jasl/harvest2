@@ -1,6 +1,6 @@
 <% url = query.new_record? ? project_table_queries_path(project, table) : project_table_query_path(project, table, query)  %>
 <%= form_with(model: query, scope: :query, url: url, local: true) do |f| %>
-  <div class="form-group">
+  <div class="mb-3">
     <%= f.label :name %>
     <%= f.text_field :name, required: "required", class: "form-control", class_for_error: "is-invalid" %>
     <%= f.error_message :name, class: "invalid-feedback" %>

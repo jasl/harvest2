@@ -15,9 +15,6 @@ ActiveStorage.start()
 import $ from 'jquery';
 window.$ = window.JQuery = $;
 
-import Popper from "popper.js";
-window.Popper = Popper;
-
 import "bootstrap";
 import "cocoon-js"
 import 'selectize';

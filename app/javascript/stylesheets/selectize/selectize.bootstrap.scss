@@ -11,7 +11,7 @@ $selectize-color-text: $gray-800 !default; //$gray-800
 $selectize-color-highlight: rgba(255, 237, 40, 0.4) !default;
 $selectize-color-input: $input-bg !default;
 $selectize-color-input-full: $input-bg !default;
-$selectize-color-input-error: theme-color("danger") !default;
+$selectize-color-input-error: $danger !default;
 $selectize-color-input-error-focus: darken($selectize-color-input-error, 10%) !default;
 $selectize-color-disabled: $input-bg !default;
 $selectize-color-item: #efefef !default;
@@ -84,9 +84,9 @@ $selectize-arrow-offset: calc(#{$selectize-padding-x} + 5px) !default;
     content: ' ';
     display: block;
     height: 0;
-    margin: $nav-divider-margin-y $selectize-padding-dropdown-item-x * -1;
+    margin: $nav-tabs-border-width $selectize-padding-dropdown-item-x * -1;
     overflow: hidden;
-    border-top: 1px solid $nav-divider-color;
+    border-top: 1px solid transparent;
   }
 
   .create {
@@ -144,7 +144,7 @@ $selectize-arrow-offset: calc(#{$selectize-padding-x} + 5px) !default;
       height: $input-height-sm !important;
       padding: $input-padding-y-sm $input-padding-x-sm !important;
       font-size: $input-font-size-sm;
-      line-height: $input-line-height-sm;
+      line-height: $input-height-sm;
     }
   }
 

@@ -19,7 +19,7 @@
       <div class="container">
         <% if @column.type.blank? %>
           <%= form_with url: new_project_table_column_path(@project, @table), method: :get, local: true do |f| %>
-            <div class="form-group">
+            <div class="mb-3">
               <%= f.label :type %>
               <%= f.select :type, options_for_table_column_type, {}, class: "form-control" %>
             </div>

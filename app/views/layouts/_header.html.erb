@@ -1,11 +1,12 @@
-<header>
-  <nav class="navbar navbar-expand-md fixed-top navbar-light bg-light">
+<nav class="navbar navbar-expand-md fixed-top navbar-light bg-light">
+  <div class="container-fluid">
     <%= link_to t("site.name"), root_path, class: "navbar-brand" %>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav mr-auto">
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <%= nav_link path: "home#index", html_options: { class: "nav-item" } do %>
           <% link_to "Home", root_path, class: "nav-link" %>
         <% end %>
@@ -14,5 +15,5 @@
         <% end %>
       </ul>
     </div>
-  </nav>
-</header>
+  </div>
+</nav>
