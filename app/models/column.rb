@@ -55,15 +55,11 @@ class Column < ApplicationRecord
   #                   allow_nil: false
 
   def not_nullable?
-    if new_record?
-      !table_ar_model.exists?
-    else
-      table_ar_model.where(key => nil).size.zero?
-    end
+    false
   end
 
   def uniqueable?
-    new_record? || !table_ar_model.select(key).group(key).having("count(*) > 1").exists?
+    false
   end
 
   def builtin_column?
@@ -74,7 +70,7 @@ class Column < ApplicationRecord
     false
   end
 
-  def virtual_column?
+  def composite_column?
     false
   end
 
@@ -89,6 +85,7 @@ class Column < ApplicationRecord
   include Helpers
   include ColumnQuery
   include Faker
+  include Postgres
   include DynamicModel
 
   class << self

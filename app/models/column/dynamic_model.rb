@@ -10,23 +10,11 @@ class Column
     end
 
     def on_building_ar_model(ar_model)
-      display_configuration.on_building_ar_model ar_model, self
-      value_configuration.on_building_ar_model ar_model, self
-      validation_configuration.on_building_ar_model ar_model, self
-      storage_configuration.on_building_ar_model ar_model, self
-
-      if primitive_column?
-        if not_null?
-          ar_model.validates symbolized_key, presence: true
-        end
-        if unique?
-          ar_model.validates symbolized_key, uniqueness: true
-        end
-      end
+      raise NotImplementedError
     end
 
-    def render_value(record, view_context: nil)
-      record.read_attribute(key)
+    def render_display_value(record, view_context: nil)
+      raise NotImplementedError
     end
 
     private

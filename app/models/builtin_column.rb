@@ -7,6 +7,7 @@ class BuiltinColumn < Column
 
   include Helpers
   include Faker
+  include PrimitiveColumn::DynamicModel
 
   class << self
     def user_creatable?
