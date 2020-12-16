@@ -1,0 +1,8 @@
+en:
+  inputs:
+    address:
+      address: "Address"
+      address2: "Address 2"
+      state: "State"
+      city: "City"
+      zip: "Zip"

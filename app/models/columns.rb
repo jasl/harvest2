@@ -1,6 +1,15 @@
 # frozen_string_literal: true
 
 module Columns
+  BUILTIN_TYPES = [
+    BuiltinColumns::PrimaryKey,
+    BuiltinColumns::Datetime
+  ].freeze
+
+  COMPOSITE_TYPES = [
+    CompositeColumns::Address
+  ].freeze
+
   PRIMITIVE_TYPES = [
     PrimitiveColumns::Text, PrimitiveColumns::Boolean, PrimitiveColumns::Decimal,
     PrimitiveColumns::Integer, PrimitiveColumns::Date, PrimitiveColumns::Datetime,
@@ -11,14 +20,9 @@ module Columns
     PrimitiveColumns::ForeignKey
   ].freeze
 
-  BUILTIN_TYPES = [
-    BuiltinColumns::PrimaryKey,
-    BuiltinColumns::Datetime
-  ].freeze
-
   NOT_IN_USE_TYPES = [].freeze
 
   def self.user_creatable_types
-    PRIMITIVE_TYPES
+    PRIMITIVE_TYPES + COMPOSITE_TYPES
   end
 end
