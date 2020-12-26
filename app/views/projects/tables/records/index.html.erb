@@ -62,6 +62,7 @@
                                 class: "text-primary"
                     %> |
                   <% end %>
+                  <%= link_to "Show", project_table_record_path(@project, @table, record), class: "text-primary" %> |
                   <%= link_to "Edit", edit_project_table_record_path(@project, @table, record), class: "text-primary" %> |
                   <%= link_to "Destroy", project_table_record_path(@project, @table, record), method: :delete, class: "text-danger", data: { confirm: "Are you sure?" } %>
                 </td>

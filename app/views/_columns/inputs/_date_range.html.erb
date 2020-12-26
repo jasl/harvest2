@@ -1,7 +1,7 @@
 <div class="mb-3 row">
-  <%= f.label column.symbolized_key, column.name, class: 'label col-sm-2 col-form-label' %>
+  <%= f.label column.symbolized_key, column.name, class: 'col-form-label col-sm-2' %>
   <div class="col-sm-10">
-    <div class="form-row align-items-center mb-2">
+    <div class="row align-items-center">
       <%= f.fields_for column.symbolized_key, f.object.send(column.symbolized_key) do |ff| %>
         <div class="col-auto">
           <%= ff.date_field :begin, class: 'form-control', id: "#{column.symbolized_key}_begin", class_for_error: "is-invalid" %>
