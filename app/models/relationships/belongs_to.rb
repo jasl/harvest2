@@ -8,6 +8,16 @@ module Relationships
 
     before_validation :set_association_names
 
+    def association_name
+      return if column_id.blank?
+      super || "#{foreign_table.key}_collection_of_#{column.key}"
+    end
+
+    def foreign_association_name
+      return if foreign_column_id.blank?
+      super || "#{table.key}_by_#{foreign_column.key}"
+    end
+
     private
 
       def set_association_names

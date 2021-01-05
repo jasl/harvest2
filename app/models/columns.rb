@@ -17,12 +17,15 @@ module Columns
     PrimitiveColumns::IntegerArray, PrimitiveColumns::DateArray, PrimitiveColumns::DatetimeArray,
     PrimitiveColumns::IntegerRange, PrimitiveColumns::DecimalRange, PrimitiveColumns::DateRange,
     PrimitiveColumns::DatetimeRange,
-    PrimitiveColumns::ForeignKey
+  ].freeze
+
+  REFERENCE_TYPES = [
+    ReferenceColumns::ForeignKey
   ].freeze
 
   NOT_IN_USE_TYPES = [].freeze
 
   def self.user_creatable_types
-    PRIMITIVE_TYPES + COMPOSITE_TYPES
+    PRIMITIVE_TYPES + COMPOSITE_TYPES + REFERENCE_TYPES
   end
 end

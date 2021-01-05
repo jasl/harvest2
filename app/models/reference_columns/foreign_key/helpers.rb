@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PrimitiveColumns::ForeignKey
+class ReferenceColumns::ForeignKey
   module Helpers
     extend ActiveSupport::Concern
 

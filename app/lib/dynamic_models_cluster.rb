@@ -48,6 +48,8 @@ class DynamicModelsCluster
         foreign_column = foreign_table.columns.find { |c| c.id == relationship.foreign_column_id }
         foreign_model = cluster.fetch_model_by_table foreign_table
 
+        next if relationship.association_name.blank?
+
         model.has_many relationship.association_name.to_sym,
                        anonymous_class: foreign_model,
                        foreign_key: foreign_column.key,
