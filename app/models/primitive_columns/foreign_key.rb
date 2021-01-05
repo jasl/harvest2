@@ -28,6 +28,10 @@ module PrimitiveColumns
     include Helpers
     include DynamicModel
 
+    def reference_column?
+      true
+    end
+
     private
 
       def auto_build_relationship

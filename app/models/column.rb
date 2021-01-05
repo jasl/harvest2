@@ -74,6 +74,10 @@ class Column < ApplicationRecord
     false
   end
 
+  def reference_column?
+    false
+  end
+
   def symbolized_key
     key.to_sym
   end

@@ -26,6 +26,11 @@ class Projects::Tables::RecordsController < Projects::Tables::ApplicationControl
     @records = @records.page(params[:page]).per(params[:per_page])
   end
 
+  def show
+    prepare_meta_tags title: "Show record"
+    @_breadcrumbs << { text: @record.id }
+  end
+
   def new
     prepare_meta_tags title: "New record"
     @_breadcrumbs << { text: "New" }
