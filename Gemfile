@@ -42,7 +42,7 @@ gem "meta-tags"
 gem "browser"
 
 gem "cocoon"
-gem "activeentity", github: "jasl/activeentity"
+gem "activeentity"
 gem "acts_as_list"
 gem "kaminari"
 gem "validates_timeliness", "~> 5.0.0.beta2"
